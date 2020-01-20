@@ -1,20 +1,24 @@
 import express from 'express';
-import mongoose from 'mongoose';
+//import mongoose from 'mongoose';
 import { ApolloServer, gql } from 'apollo-server-express';
 
+import Connection from './connection';
 import schema from './schema';
 import resolvers from './resolvers';
 import models from './models';
 
-mongoose.connect('mongodb://localhost:27017/local')
+// mongoose.connect('mongodb://localhost:27017/local');
+//
+// const db = mongoose.connection;
+// db.on('error', ()=> {console.log( '---FAILED to connect to mongoose')})
+// db.once('open', () => {
+//
+//  console.log( '+++Connected to mongoose')
+// });
 
-const db = mongoose.connection;
-db.on('error', ()=> {console.log( '---FAILED to connect to mongoose')})
-db.once('open', () => {
- console.log( '+++Connected to mongoose')
-});
+console.log(Connection.getInstance().getConnection());
 
-const server = new ApolloServer({ 
+const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
   formatError: error => {
