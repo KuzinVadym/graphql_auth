@@ -1,33 +1,28 @@
-import React, { Component, Fragment } from 'react';
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
 
+import React from 'react';
+import { ThemeProvider } from '@material-ui/styles';
 
-const GET_USERS = gql`
-  {
-    users {
-      id
-      username
-      email
-    }
-  }
-`;
+import Header from '../Header';
+import Footer from '../Footer';
 
-console.log(process.env.APIKEY);
-console.log(process.env.CLIENTID);
+import theme from '../../styles';
+import useStyles from './style';
 
-const ExchangeRates = () => (
-  <Query query={GET_USERS} >
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error :(</p>;
-        console.log(data);
+const App = () => {
+  const classes = useStyles();
 
-      return (
-        <div>Looking in to the logs</div>
-      )
-    }}
-  </Query>
-);
+  return (
+      <ThemeProvider theme={theme}>
+        <div className={classes.root}>
+          <Header />
+          <div>
+            Looking in to the logs
+          </div>
+          <Footer />
+        </div>
+      </ThemeProvider>
+  )
 
-export default ExchangeRates;
+};
+
+export default App;

@@ -6,13 +6,13 @@ import schema from './schema';
 import resolvers from './resolvers';
 import models from './models';
 
-mongoose.connect('mongodb://localhost:27017/local')
-
-const db = mongoose.connection;
-db.on('error', ()=> {console.log( '---FAILED to connect to mongoose')})
-db.once('open', () => {
- console.log( '+++Connected to mongoose')
-});
+// mongoose.connect('mongodb://localhost:27017/local')
+//
+// const db = mongoose.connection;
+// db.on('error', ()=> {console.log( '---FAILED to connect to mongoose')})
+// db.once('open', () => {
+//  console.log( '+++Connected to mongoose')
+// });
 
 const server = new ApolloServer({ 
   typeDefs: schema,
